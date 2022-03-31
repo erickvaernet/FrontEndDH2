@@ -11,7 +11,7 @@ export class PropsVsState extends Component {
         this.state={
             peliculas:peliculas1
         }
-    }
+    }    
     cambiarPeliculla(){
         this.setState((s)=>({
             peliculas:peliculas2
