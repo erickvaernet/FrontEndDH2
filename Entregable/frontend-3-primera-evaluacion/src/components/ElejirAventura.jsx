@@ -18,23 +18,30 @@ export class ElejirAventura extends Component {
   }
 
   handleClick(boton){
-      let contadorActual=this.state.contador
-      if(boton=="A"){          
-        this.setState((prevState)=>({
-            contador: contadorActual+1,
-            historial:prevState.historial,
-            seleccionPrevia:prevState.seleccionPrevia,
+    let contadorActual=this.state.contador
+    if(contadorActual<7){  
+      if(boton==="A"){          
+        this.setState((prevState)=>({          
+            historial: [...prevState.historial,"A"],
+            contador: contadorActual===0? contadorActual+1:
+                      contadorActual%2===0? contadorActual+1: contadorActual+2,
+            seleccionPrevia:"A",
         }))
       } 
-      if(boton=="B"){          
+      else if(boton==="B"){          
         this.setState((prevState)=>({
-            contador: contadorActual+2,
-            historial:prevState.historial,
-            seleccionPrevia:prevState.seleccionPrevia,
+            historial: [...prevState.historial,"B"],
+            contador: contadorActual===0? contadorActual+2:
+                      contadorActual%2===0? contadorActual+2: contadorActual+3,            
+            seleccionPrevia:"B",
         }))
       } 
+    }
+    else{
+      alert("Fin.")
+    }
   }
-
+  
   render() {
     return (
       <Layout>
@@ -44,7 +51,7 @@ export class ElejirAventura extends Component {
             opcionA={data[this.state.contador].opciones.a}
             opcionB={data[this.state.contador].opciones.b}
         />
-        <Recordatorio/>
+        <Recordatorio seleccionAnterior={this.state.seleccionPrevia} historial={this.state.historial}/>
       </Layout>
     )
   }
