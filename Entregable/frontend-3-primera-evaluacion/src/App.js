@@ -1,11 +1,10 @@
-import Layout from "./components/Layout";
+import ElejirAventura from "./components/ElejirAventura";
+
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <h1>s</h1>
-      </Layout>
+      <ElejirAventura/>
     </div>
   );
 }
